@@ -46,6 +46,6 @@ echo "Push $target_branch ? (y/n)";
 read i
 if [ "$i" = "y" ]; then
     git checkout $target_branch;
-    git push -f --no-verify;
+    git push --force-with-lease --no-verify;
     git checkout $current_branch;
 fi

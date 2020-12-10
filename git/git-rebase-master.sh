@@ -22,11 +22,12 @@ if [[ $uncommited_changes ]]; then
     fi
 fi
 
-echo "Rebasing ..."
-git rebase --continue 2> /dev/null || git rebase -i origin/$DEFAULT_BRANCH --autosquash;
-
 current_branch="$(git rev-parse --abbrev-ref HEAD)";
 remote_name="$(git remote | head -1)";
+
+echo "Rebasing ..."
+git rebase --continue 2> /dev/null || git rebase -i -X $current_branch origin/$DEFAULT_BRANCH --autosquash;
+
 while true; do
     echo -n "Push changes to $remote_name/$current_branch ? [y/n] : " 
     read -r yn

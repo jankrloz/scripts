@@ -43,17 +43,9 @@ if [ "$i" = "y" ]; then
     git checkout $target_branch;
     git fetch origin $target_branch
     git reset --hard origin/$target_branch
-    git merge $source_branch;
-    bash ~/dev/scripts/git-rebase-master.sh;
+    git merge --continue 2> /dev/null || git merge $source_branch;
+    bash ./git-rebase-master.sh;
     git checkout $current_branch;
 elif [ "$i" = "n" ]; then
     exit 0;
-fi
-
-echo "Push $target_branch ? (y/n)";
-read i
-if [ "$i" = "y" ]; then
-    git checkout $target_branch;
-    git push -f --no-verify;
-    git checkout $current_branch;
 fi
