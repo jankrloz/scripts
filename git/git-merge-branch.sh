@@ -44,7 +44,7 @@ if [ "$i" = "y" ]; then
     git fetch origin $target_branch
     git reset --hard origin/$target_branch
     git merge --continue 2> /dev/null || git merge $source_branch;
-    bash ./git-rebase-master.sh;
+    bash ~/dev/jankrloz/scripts/git/git-rebase-master.sh;
     git checkout $current_branch;
 elif [ "$i" = "n" ]; then
     exit 0;
